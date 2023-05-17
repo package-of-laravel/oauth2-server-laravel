@@ -60,7 +60,7 @@ return [
     |    ],
     |
     |    'refresh_token' => [
-    |        'class'                 => 'League\OAuth2\Server\Grant\RefreshTokenGrant',
+    |        'class'                 => 'LucaDegasperi\OAuth2Server\Grants\RefreshTokenGrant',
     |        'access_token_ttl'      => 3600,
     |
     |        // the refresh token time to live
@@ -68,6 +68,10 @@ return [
     |
     |        // whether or not to issue a new refresh token when a new access token is issued
     |        'rotate_refresh_tokens' => false,
+    |
+    |        // whether or not to require client secret when a new access token is issued
+    |        // using refresh token
+    |        'require_client_secret' => false,
     |    ],
     |
     | ],
