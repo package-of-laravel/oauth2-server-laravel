@@ -144,4 +144,20 @@ class FluentSession extends FluentAdapter implements SessionInterface
                ->setId($result->id)
                ->setOwner($result->owner_type, $result->owner_id);
     }
+    
+    /**
+     * Delete the expired sessions.
+     * 
+     * @return void
+     */
+    public function deleteExpired()
+    {
+        $this->getConnection()->table('oauth_sessions')
+            ->select(['oauth_sessions.id'])
+            ->leftJoin('oauth_access_tokens', 'oauth_access_tokens.session_id', '=', 'oauth_sessions.id')
+            ->leftJoin('oauth_refresh_tokens', 'oauth_refresh_tokens.access_token_id', '=', 'oauth_access_tokens.id')
+            ->whereNull('oauth_refresh_tokens.id')
+            ->whereNull('oauth_access_tokens.id')
+            ->delete();
+    }
 }

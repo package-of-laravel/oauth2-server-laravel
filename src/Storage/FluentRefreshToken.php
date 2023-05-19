@@ -69,7 +69,19 @@ class FluentRefreshToken extends FluentAdapter implements RefreshTokenInterface
     public function delete(RefreshTokenEntity $token)
     {
         $this->getConnection()->table('oauth_refresh_tokens')
-        ->where('id', $token->getId())
-        ->delete();
+            ->where('id', $token->getId())
+            ->delete();
+    }
+
+    /**
+     * Delete the expired refresh token.
+     * 
+     * @return void
+     */
+    public function deleteExpired()
+    {
+        $this->getConnection()->table('oauth_refresh_tokens')
+            ->where('expire_time', '<', time())
+            ->delete();
     }
 }

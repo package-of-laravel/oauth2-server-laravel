@@ -150,8 +150,9 @@ class OAuth2ServerServiceProvider extends ServiceProvider
         $this->app->bind('command.oauth2-server.controller', 'LucaDegasperi\OAuth2Server\Console\OAuthControllerCommand');
         $this->app->bind('command.oauth2-server.migrations', 'LucaDegasperi\OAuth2Server\Console\MigrationsCommand');
         $this->app->bind('command.oauth2-server.client.create', 'LucaDegasperi\OAuth2Server\Console\ClientCreatorCommand');
+        $this->app->bind('command.oauth2-server.clear-expired-token', 'LucaDegasperi\OAuth2Server\Console\ClearExpiredTokensCommand');
 
-        $this->commands('command.oauth2-server.controller', 'command.oauth2-server.migrations', 'command.oauth2-server.client.create');
+        $this->commands('command.oauth2-server.controller', 'command.oauth2-server.migrations', 'command.oauth2-server.client.create', 'command.oauth2-server.clear-expired-token');
     }
 
     /**

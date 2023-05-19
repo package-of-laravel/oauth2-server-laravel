@@ -97,7 +97,19 @@ class FluentAccessToken extends FluentAdapter implements AccessTokenInterface
     public function delete(AccessTokenEntity $token)
     {
         $this->getConnection()->table('oauth_access_tokens')
-        ->where('oauth_access_tokens.id', $token->getId())
-        ->delete();
+          ->where('oauth_access_tokens.id', $token->getId())
+          ->delete();
+    }
+
+    /**
+     * Delete the expired access token.
+     * 
+     * @return void
+     */
+    public function deleteExpired()
+    {
+        $this->getConnection()->table('oauth_access_tokens')
+          ->where('expire_time', '<', time())
+          ->delete();
     }
 }
