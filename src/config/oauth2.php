@@ -72,14 +72,15 @@ return [
     |        // whether or not to require client secret when a new access token is issued
     |        // using refresh token
     |        'require_client_secret' => false,
+    |
+    |       //whether or not the client secret is required when a new access token is issued.
+    |        'require_client_secret' => false,
     |    ],
     |
     | ],
     |
     */
-
     'grant_types' => [
-
     ],
 
     /*
